@@ -1,0 +1,8 @@
+{
+  "name": "testdrive",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "startbootstrap-sb-admin-2": "~1.0.8"
+  }
+}

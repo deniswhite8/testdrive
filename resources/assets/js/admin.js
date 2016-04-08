@@ -1,0 +1,14 @@
+window.$ = window.jQuery = require('../../../bower_components/jquery/dist/jquery.min.js');
+require('../../../bower_components/bootstrap/dist/js/bootstrap.min.js');
+require('../../../bower_components/metisMenu/dist/metisMenu.min.js');
+//require('../../../bower_components/raphael/raphael-min.js');
+//require('../../../bower_components/morrisjs/morris.min.js');
+//require('./admin/morris-data.js');
+//require('../../../bower_components/flot/excanvas.min.js');
+//require('../../../bower_components/flot/jquery.flot.js');
+//require('../../../bower_components/flot/jquery.flot.pie.js');
+//require('../../../bower_components/flot/jquery.flot.resize.js');
+//require('../../../bower_components/flot/jquery.flot.time.js');
+//require('../../../bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js');
+//require('./admin/flot-data.js');
+require('../../../bower_components/startbootstrap-sb-admin-2/dist/js/sb-admin-2.js');
