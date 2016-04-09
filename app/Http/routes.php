@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', function () {
-    return view('admin.blank');
-});
+Route::get('/admin', 'Admin\IndexController@dashboard');
+Route::get('/admin/{name}', 'Admin\IndexController@grid');
+Route::get('/admin/{name}/{id}', 'Admin\IndexController@edit');
 
