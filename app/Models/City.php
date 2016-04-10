@@ -1,22 +1,15 @@
 <?php
 
 namespace App\Models;
-use SleepingOwl\Models\SleepingOwlModel;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * City
  *
  * @package App\Model
  */
-class City extends SleepingOwlModel
+class City extends Model
 {
-    /**
-     * The attributes that are mass assignable
-     *
-     * @var array
-     */
-    protected $fillable = ['name'];
-
     /**
      * Indicates if the model should be timestamped
      *

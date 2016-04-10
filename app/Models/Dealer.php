@@ -1,42 +1,20 @@
 <?php
 
 namespace App\Models;
-use SleepingOwl\Models\Interfaces\ModelWithImageFieldsInterface;
-use SleepingOwl\Models\SleepingOwlModel;
-use SleepingOwl\Models\Traits\ModelWithImageOrFileFieldsTrait;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Dealer
  *
  * @package App\Models
  */
-class Dealer extends SleepingOwlModel implements ModelWithImageFieldsInterface
+class Dealer extends Model
 {
-    use ModelWithImageOrFileFieldsTrait;
-
-    /**
-     * The attributes that are mass assignable
-     *
-     * @var array
-     */
-    protected $fillable = ['name', 'description', 'image'];
-
     /**
      * Get dealer salons
      */
     public function salons()
     {
         return $this->hasMany(Salon::class);
-    }
-
-    /**
-     * Get image fields
-     *
-     * @return array
-     */
-    public function getImageFields() {
-        return [
-            'image' => 'dealers/'
-        ];
     }
 }

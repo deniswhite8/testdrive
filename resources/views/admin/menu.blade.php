@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="">{{ config('admin.title') }}</a>
+        <a class="navbar-brand" href="{{ url('admin') }}">{{ config('admin.title') }}</a>
     </div>
 
     <ul class="nav navbar-top-links navbar-right">
@@ -223,17 +223,18 @@
             <ul class="nav" id="side-menu">
                 <li class="sidebar-search">
                     <div class="input-group custom-search-form">
-                        <input type="text" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">
-                                <i class="fa fa-search"></i>
-                            </button>
+                        <input type="text" class="form-control" placeholder="Search..." id="menuSearch">
+                        <span class="input-group-addon">
+                            <i class="fa fa-search"></i>
                         </span>
                     </div>
                 </li>
                 @foreach (config('admin.menu') as $key => $item)
                     <li>
-                        <a href="{{ url("admin/$key") }}"><i class="fa fa-{{ $item['icon'] }} fa-fw"></i> {{ $item['label'] }}</a>
+                        <a href="{{ url("admin/$key") }}">
+                            <i class="fa fa-{{ $item['icon'] }} fa-fw"></i>
+                            <span class="js-menu-item-text">{{ $item['label'] }}</span>
+                        </a>
                     </li>
                 @endforeach
             </ul>

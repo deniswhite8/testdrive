@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Models\Auto;
-use SleepingOwl\Models\SleepingOwlModel;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
+use App\Models\Auto;
 
 /**
  * Auto models
  *
  * @package App\Models\Auto
  */
-class Model extends SleepingOwlModel
+class Model extends EloquentModel
 {
     /**
      * The table associated with the model
@@ -25,13 +26,6 @@ class Model extends SleepingOwlModel
     public $timestamps = false;
 
     /**
-     * The attributes that are mass assignable
-     *
-     * @var array
-     */
-    protected $fillable = ['name', 'mark_id'];
-
-    /**
      * Get mark
      */
     public function mark()
@@ -45,5 +39,13 @@ class Model extends SleepingOwlModel
     public function generations()
     {
         return $this->hasMany(Generation::class);
+    }
+
+    /**
+     * Get autos
+     */
+    public function autos()
+    {
+        return $this->hasMany(Auto::class);
     }
 }

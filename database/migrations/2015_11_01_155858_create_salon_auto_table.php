@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class SalonAuto extends Migration
+class CreateSalonAutoTable extends Migration
 {
     /**
      * Run the migrations.

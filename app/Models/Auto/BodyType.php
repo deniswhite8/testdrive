@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Models\Auto;
-use SleepingOwl\Models\SleepingOwlModel;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Auto;
 
 /**
  * Body type
  *
  * @package App\Model\Auto
  */
-class BodyType extends SleepingOwlModel
+class BodyType extends Model
 {
     /**
      * The table associated with the model
@@ -25,19 +26,10 @@ class BodyType extends SleepingOwlModel
     public $timestamps = false;
 
     /**
-     * The attributes that are mass assignable
-     *
-     * @var array
+     * Get autos
      */
-    protected $fillable = ['name'];
-
-    /**
-     * To option array
-     *
-     * @return array
-     */
-    public static function getList()
+    public function autos()
     {
-        return self::lists('name', 'id')->all();
+        return $this->hasMany(Auto::class);
     }
 }

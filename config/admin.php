@@ -10,8 +10,28 @@ return [
         'dealer' => ['label' => 'Dealers', 'icon' => 'building']
     ],
     'model' => [
-        'dealer' => [
-
-        ]
+        'mark' => [
+            'grid' => [
+                'id' => 'Id',
+                'name' => 'Name',
+            ]
+        ],
+        'model' => [
+            'grid' => [
+                'id' => 'Id',
+                'name' => 'Name',
+                'mark.name' => 'Mark'
+            ]
+        ],
+        'generation' => [
+            'grid' => [
+                'id' => 'Id',
+                'name' => 'Name',
+                'start_year_production' => 'Start Year',
+                'end_year_production' => 'End Year',
+                'model.name' => 'Model',
+                'model.mark.name' => 'Mark'
+            ]
+        ],
     ]
 ];

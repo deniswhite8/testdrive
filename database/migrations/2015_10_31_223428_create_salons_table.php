@@ -20,6 +20,7 @@ class CreateSalonsTable extends Migration
             $table->string('city');
             $table->string('address');
             $table->string('phone');
+            $table->string('email');
             $table->string('work_time');
             $table->double('latitude');
             $table->double('longitude');

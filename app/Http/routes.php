@@ -15,7 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', 'Admin\IndexController@dashboard');
-Route::get('/admin/{name}', 'Admin\IndexController@grid');
-Route::get('/admin/{name}/{id}', 'Admin\IndexController@edit');
+Route::group(['prefix' => 'api', 'namespace' => 'Api'], function() {
+    foreach (['mark', 'model', 'generation'] as $name) {
+        Route::resource($name, 'BaseController');
+    }
+});
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
+    Route::get('/', 'ViewController@dashboard');
+    Route::get('{name}', 'ViewController@grid');
+    Route::get('{name}/{id}', 'ViewController@edit');
+});
+
 

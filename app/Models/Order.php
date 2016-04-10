@@ -5,23 +5,15 @@ namespace App\Models;
 use App\Models\Auto\Generation;
 use App\Models\Auto\Mark;
 use App\Models\Auto\Model;
-use SleepingOwl\Models\SleepingOwlModel;
+use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 /**
  * Dealer
  *
  * @package App\Models
  */
-class Order extends SleepingOwlModel
+class Order extends EloquentModel
 {
-    /**
-     * The attributes that are mass assignable
-     *
-     * @var array
-     */
-    protected $fillable = ['mark_id', 'model_id', 'generation_id', 'salon_id',
-        'contacts', 'datetime', 'comment'];
-
     /**
      * Get mark
      */
@@ -52,16 +44,5 @@ class Order extends SleepingOwlModel
     public function salon()
     {
         return $this->belongsTo(Salon::class);
-    }
-
-    /**
-     * Set generation id attribute
-     *
-     * @param mixed $value Value
-     * @return void
-     */
-    public function setGenerationIdAttribute($value)
-    {
-        $this->attributes['generation_id'] = $value ?: null;
     }
 }

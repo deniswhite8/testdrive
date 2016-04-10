@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 /**
- * Class IndexController
+ * View controller
  *
  * @package App\Http\Controllers\Admin
  */
-class IndexController extends Controller
+class ViewController extends Controller
 {
     /**
      * Dashboard action

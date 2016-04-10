@@ -1,14 +1,15 @@
 <?php
 
 namespace App\Models\Auto;
-use SleepingOwl\Models\SleepingOwlModel;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Auto;
 
 /**
  * Auto generation
  *
  * @package App\Models\Auto
  */
-class Generation extends SleepingOwlModel
+class Generation extends Model
 {
     /**
      * The table associated with the model
@@ -37,5 +38,13 @@ class Generation extends SleepingOwlModel
     public function model()
     {
         return $this->belongsTo(\App\Models\Auto\Model::class);
+    }
+
+    /**
+     * Get autos
+     */
+    public function autos()
+    {
+        return $this->hasMany(Auto::class);
     }
 }
