@@ -39,8 +39,8 @@ class ViewController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($name, $id)
+    public function edit($name, $id = null)
     {
-
+        return view('admin.form', ['model' => $name, 'id' => $id]);
     }
 }

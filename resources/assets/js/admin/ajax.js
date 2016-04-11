@@ -1,5 +1,10 @@
 var $body = $('body'),
+    csrfToken = $('meta[name="csrf-token"]').attr('content'),
     defaults = {
+        headers: {
+            'X-CSRF-TOKEN': csrfToken
+        },
+
         beforeSend: function() {
             $.fancybox.helpers.overlay.open({parent: $body, closeClick: false});
             $.fancybox.showLoading();

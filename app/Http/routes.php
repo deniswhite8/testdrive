@@ -24,6 +24,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function() {
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::get('/', 'ViewController@dashboard');
     Route::get('{name}', 'ViewController@grid');
+    Route::get('{name}/new', 'ViewController@edit');
     Route::get('{name}/{id}', 'ViewController@edit');
 });
 

@@ -7,16 +7,23 @@ return [
         'order' => ['label' => 'Orders', 'icon' => 'check-square-o'],
         'salon' => ['label' => 'Salons', 'icon' => 'map-marker'],
         'auto' => ['label' => 'Autos', 'icon' => 'car'],
-        'dealer' => ['label' => 'Dealers', 'icon' => 'building']
+        'dealer' => ['label' => 'Dealers', 'icon' => 'building'],
+        'mark' => ['label' => 'Marks', 'icon' => ''],
+        'model' => ['label' => 'Models', 'icon' => ''],
     ],
     'model' => [
         'mark' => [
+            'title' => 'Mark',
             'grid' => [
                 'id' => 'Id',
                 'name' => 'Name',
+            ],
+            'form' => [
+                ['type' => 'text', 'name' => 'name', 'label' => 'Name']
             ]
         ],
         'model' => [
+            'title' => 'Model',
             'grid' => [
                 'id' => 'Id',
                 'name' => 'Name',

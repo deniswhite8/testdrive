@@ -10,7 +10,7 @@ function initDeleteBtns($table, config) {
                 id = datatable.row($(this).closest('tr')).data().id;
 
             ajax({
-                url: config.url + '/' + id,
+                url: config.apiUrl + '/' + id,
                 type: 'delete',
 
                 success: function() {
@@ -58,7 +58,7 @@ function initDatatable($table) {
             processing: true,
             serverSide: true,
             ajax: {
-                url: config.url,
+                url: config.apiUrl,
                 data: function(request) {
                     prepareRequest(request);
                 }

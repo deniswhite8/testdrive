@@ -1,5 +1,5 @@
 function initSearch() {
-    var $menuItemTextElements = $('#side-menu').find('span');
+    var $menuItemTextElements = $('#side-menu').find('a > span');
 
     $menuItemTextElements.each(function() {
         var $item = $(this);
