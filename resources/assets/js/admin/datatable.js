@@ -40,11 +40,16 @@ function initDatatable($table) {
         if (!config.fields.hasOwnProperty(fieldKey)) continue;
         columns.push({data: fieldKey});
     }
-    columns.push({data: null, width: '10%', orderable: false});
+    columns.push({data: null, width: '13%', orderable: false});
 
     $table
         .on('draw.dt', function () {
             initDeleteBtns($table, config);
+            $table.find('.js-edit').each(function () {
+                var $btn = $(this),
+                    id = $table.DataTable().row($btn.closest('tr')).data().id;
+                $btn.attr('href', config.url + '/' + id);
+            });
         })
         .on('xhr.dt', function (event, settings, response) {
             prepareResponse(response);
@@ -63,20 +68,22 @@ function initDatatable($table) {
                 targets: -1,
                 defaultContent:
                     '<div class="btn-group" role="group" aria-label="Actions">\
-                        <button type="button" class="btn btn-xs btn-primary js-edit">Edit</button>\
-                        <button type="button" class="btn btn-xs btn-danger js-delete">Delete</button>\
+                        <a href="#" type="button" class="btn btn-xs btn-primary js-edit">Edit\
+                            <span class="glyphicon glyphicon-edit"></span></a>\
+                        <button type="button" class="btn btn-xs btn-danger js-delete">Delete\
+                            <span class="glyphicon glyphicon-remove"></span></button>\
                     </div>'
             }],
-            dom: "<'row'<'col-sm-4'l><'col-sm-4'B><'col-sm-4'f>>rtip",
+            dom: "<'row'<'col-sm-4'l><'col-sm-4'B><'col-sm-4'f>>rt<'row'<'col-sm-6'i><'col-sm-6'p>>",
             buttons: [
                 {
-                    text: 'Add New',
-                    action: function () {
-                        alert(123);
+                    text: 'Add New <span class="glyphicon glyphicon-plus"></span>',
+                    init: function (dt, node) {
+                        $(node).attr('href', config.url + '/new').off('click');
                     }
                 },
                 {
-                    text: 'Refresh',
+                    text: 'Refresh <span class="glyphicon glyphicon-refresh"></span>',
                     action: function () {
                         $table.DataTable().ajax.reload(null, false);
                     }

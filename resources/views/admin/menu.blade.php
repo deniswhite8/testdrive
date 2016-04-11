@@ -233,7 +233,7 @@
                     <li>
                         <a href="{{ url("admin/$key") }}">
                             <i class="fa fa-{{ $item['icon'] }} fa-fw"></i>
-                            <span class="js-menu-item-text">{{ $item['label'] }}</span>
+                            <span>{{ $item['label'] }}</span>
                         </a>
                     </li>
                 @endforeach

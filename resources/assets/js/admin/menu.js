@@ -1,5 +1,5 @@
 function initSearch() {
-    var $menuItemTextElements = $('.js-menu-item-text');
+    var $menuItemTextElements = $('#side-menu').find('span');
 
     $menuItemTextElements.each(function() {
         var $item = $(this);
@@ -14,10 +14,12 @@ function initSearch() {
                 text = $item.data('text');
 
             if (searchText) {
-                text = text.replace(new RegExp(searchText, 'ig'),
+                text = text.replace(
+                    new RegExp(searchText.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'), 'ig'),
                     function (match) {
                         return '<span class="search-highlight">' + match + '</span>';
-                    });
+                    }
+                );
             }
 
             $item.html(text);
