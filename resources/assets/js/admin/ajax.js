@@ -1,13 +1,17 @@
 var $body = $('body'),
     csrfToken = $('meta[name="csrf-token"]').attr('content'),
+    timeoutHandle = null,
     defaults = {
         headers: {
             'X-CSRF-TOKEN': csrfToken
         },
 
         beforeSend: function() {
-            $.fancybox.helpers.overlay.open({parent: $body, closeClick: false});
-            $.fancybox.showLoading();
+            clearTimeout(timeoutHandle);
+            timeoutHandle = setTimeout(function() {
+                $.fancybox.helpers.overlay.open({parent: $body, closeClick: false});
+                $.fancybox.showLoading();
+            }, 300);
         },
 
         error: function(xhr, status, error) {
@@ -15,10 +19,12 @@ var $body = $('body'),
         },
 
         complete: function() {
-            if ($.fancybox.current) return;
-
+            clearTimeout(timeoutHandle);
             $.fancybox.hideLoading();
-            $.fancybox.helpers.overlay.close();
+
+            if (!$.fancybox.current) {
+                $.fancybox.helpers.overlay.close();
+            }
         }
     };
 
