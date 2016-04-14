@@ -26,12 +26,18 @@ function initForm() {
                     if (!data.hasOwnProperty(field) || !input) continue;
                     inputs[field].val(data[field]);
                 }
+
+                $form.valid();
             }
         });
     });
 
     $form.on('submit', function(event) {
         event.preventDefault();
+
+        if (!$form.valid()) {
+            return;
+        }
 
         ajax({
             url: apiUrl + '/' + modelId,
@@ -45,6 +51,7 @@ function initForm() {
         });
     });
 
+    $form.validate();
     $form.trigger('reset');
 }
 

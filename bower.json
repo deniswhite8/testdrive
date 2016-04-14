@@ -6,6 +6,7 @@
     "startbootstrap-sb-admin-2": "~1.0.8",
     "bootstrap-confirmation2": "~2.2.0",
     "fancybox": "~2.1.5",
-    "datatables-buttons": "^1.1.2"
+    "datatables-buttons": "^1.1.2",
+    "jquery-validation": "~1.15.0"
   }
 }

@@ -8,8 +8,11 @@ return [
         'salon' => ['label' => 'Salons', 'icon' => 'map-marker'],
         'auto' => ['label' => 'Autos', 'icon' => 'car'],
         'dealer' => ['label' => 'Dealers', 'icon' => 'building'],
-        'mark' => ['label' => 'Marks', 'icon' => ''],
-        'model' => ['label' => 'Models', 'icon' => ''],
+        'mark' => ['label' => 'Marks', 'icon' => 'dot-circle-o'],
+        'model' => ['label' => 'Models', 'icon' => 'dot-circle-o'],
+        'generation' => ['label' => 'Generation', 'icon' => 'dot-circle-o'],
+        'body' => ['label' => 'Body Types', 'icon' => 'dot-circle-o'],
+        'gearbox' => ['label' => 'Gearbox Types', 'icon' => 'dot-circle-o'],
     ],
     'model' => [
         'mark' => [
@@ -19,7 +22,7 @@ return [
                 'name' => 'Name',
             ],
             'form' => [
-                ['type' => 'text', 'name' => 'name', 'label' => 'Name']
+                ['type' => 'text', 'name' => 'name', 'label' => 'Name', 'required' => true]
             ]
         ],
         'model' => [

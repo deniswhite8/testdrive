@@ -16,6 +16,7 @@ elixir(function(mix) {
             '../../../bower_components/fancybox/source/jquery.fancybox.pack.js',
             '../../../bower_components/datatables-buttons/js/dataTables.buttons.js',
             '../../../bower_components/datatables-buttons/js/buttons.bootstrap.js',
+            '../../../bower_components/jquery-validation/src/core.js',
             '../../../public/js/admin.js'
         ], 'public/js/admin.js')
         .copy('bower_components/bootstrap/fonts/**', 'public/build/fonts')
