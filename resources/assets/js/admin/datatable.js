@@ -1,4 +1,5 @@
-var ajax = require('./ajax.js');
+var ajax = require('./ajax.js'),
+    searchIndexes = [];
 
 function initDeleteBtns($table, config) {
     $table.find('.js-delete').confirmation({
@@ -22,13 +23,18 @@ function initDeleteBtns($table, config) {
 }
 
 function prepareRequest(request) {
+    request.request_id = request.draw;
     request.count = request.length;
     request.page = Math.floor(request.start / request.length) + 1;
+    request.dir = request.order[0].dir;
+    request.order = searchIndexes[request.order[0].column];
+    request.search = request.search.value;
 }
 
 function prepareResponse(response) {
+    response.draw = response.request_id;
     response.recordsTotal = response.total;
-    response.recordsFiltered = response.total;
+    response.recordsFiltered = response['filtered_total'];
     response.error = response.message;
 }
 
@@ -39,6 +45,7 @@ function initDatatable($table) {
     for (var fieldKey in config.fields) {
         if (!config.fields.hasOwnProperty(fieldKey)) continue;
         columns.push({data: fieldKey});
+        searchIndexes.push(fieldKey.split('.').slice(-2).join('.'));
     }
     columns.push({data: null, width: '13%', orderable: false});
 
@@ -58,7 +65,7 @@ function initDatatable($table) {
             processing: true,
             serverSide: true,
             ajax: {
-                url: config.apiUrl,
+                url: config.apiUrl + '/query',
                 data: function(request) {
                     prepareRequest(request);
                 }

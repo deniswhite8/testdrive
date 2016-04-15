@@ -11,6 +11,8 @@ use App\Models\Auto;
  */
 class Generation extends Model
 {
+    use \SleepingOwl\WithJoin\WithJoinTrait;
+
     /**
      * The table associated with the model
      *

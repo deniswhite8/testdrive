@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'api', 'namespace' => 'Api'], function() {
     foreach (['mark', 'model', 'generation'] as $name) {
+        Route::get("$name/query", 'BaseController@query');
         Route::resource($name, 'BaseController');
     }
 });

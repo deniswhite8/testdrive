@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
+use App\Models\Admin\ModelRepository;
 use Illuminate\Support\Arr;
 
 /**
@@ -18,12 +19,19 @@ class BaseController extends Controller
      */
     public function index()
     {
-        $config = $this->_getModelConfig();
-        $class = $config['class'];
-        $with = isset($config['with']) ? (array) $config['with'] : [];
-        $count = max(0, min(config('api.max_per_page'), (int) request('count')));
+        $class = $this->_getModelConfig('class');
+        return $class::paginate();
+    }
 
-        return $class::with($with)->paginate($count);
+    /**
+     * Query
+     *
+     * @return mixed
+     */
+    public function query()
+    {
+        $modelRepository = new ModelRepository();
+        return $modelRepository->applyFilters($this->_getModelConfig(), request()->input());
     }
 
     /**
