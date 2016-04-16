@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MarkSeeder::class);
         $this->call(ModelSeeder::class);
         $this->call(GenerationSeeder::class);
+        $this->call(CitySeeder::class);
 
         Model::reguard();
     }

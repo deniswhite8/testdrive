@@ -60,7 +60,7 @@ return [
             'title' => 'Dealer',
             'grid' => [
                 'id' => 'Id',
-                'Name' => 'Name'
+                'name' => 'Name'
             ],
             'form' => [
                 ['type' => 'text', 'name' => 'name', 'label' => 'Name', 'required' => true]
@@ -71,7 +71,7 @@ return [
             'title' => 'City',
             'grid' => [
                 'id' => 'Id',
-                'Name' => 'Name'
+                'name' => 'Name'
             ],
             'form' => [
                 ['type' => 'text', 'name' => 'name', 'label' => 'Name', 'required' => true]
