@@ -25,7 +25,6 @@
                             Reset <span class="glyphicon glyphicon-remove"></span></button>
                     </form>
                 </div>
-                </div>
             </div>
         </div>
     </div>
