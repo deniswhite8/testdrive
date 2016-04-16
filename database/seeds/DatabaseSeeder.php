@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(BodyTypeSeeder::class);
-        $this->call(GearboxTypeSeeder::class);
+        $this->call(BodySeeder::class);
+        $this->call(GearboxSeeder::class);
         $this->call(MarkSeeder::class);
         $this->call(ModelSeeder::class);
         $this->call(GenerationSeeder::class);

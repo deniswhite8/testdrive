@@ -17,8 +17,8 @@ class CreateAutosTable extends Migration
             $table->integer('mark_id')->unsigned();
             $table->integer('model_id')->unsigned();
             $table->integer('generation_id')->unsigned()->nullable();
-            $table->integer('body_type_id')->unsigned();
-            $table->integer('gearbox_type_id')->unsigned();
+            $table->integer('body_id')->unsigned();
+            $table->integer('gearbox_id')->unsigned();
             $table->integer('mileage')->unsigned()->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
@@ -39,13 +39,13 @@ class CreateAutosTable extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('body_type_id')
-                ->references('id')->on('auto_body_types')
+            $table->foreign('body_id')
+                ->references('id')->on('auto_bodies')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('gearbox_type_id')
-                ->references('id')->on('auto_gearbox_types')
+            $table->foreign('gearbox_id')
+                ->references('id')->on('auto_gearboxes')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

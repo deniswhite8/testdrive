@@ -12,13 +12,6 @@ use App\Models\Auto;
 class Mark extends AbstractModel
 {
     /**
-     * The table associated with the model
-     *
-     * @var string
-     */
-    protected $table = 'auto_marks';
-
-    /**
      * Indicates if the model should be timestamped
      *
      * @var bool

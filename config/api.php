@@ -52,12 +52,12 @@ return [
     ],
 
     'body' => [
-        'class' => \App\Models\Auto\BodyType::class,
+        'class' => \App\Models\Auto\Body::class,
         'search' => ['id', 'name']
     ],
 
     'gearbox' => [
-        'class' => \App\Models\Auto\GearboxType::class,
+        'class' => \App\Models\Auto\Gearbox::class,
         'search' => ['id', 'name']
     ]
 ];

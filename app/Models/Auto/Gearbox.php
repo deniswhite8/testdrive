@@ -9,15 +9,8 @@ use App\Models\Auto;
  *
  * @package App\Model\Auto
  */
-class GearboxType extends AbstractModel
+class Gearbox extends AbstractModel
 {
-    /**
-     * The table associated with the model
-     *
-     * @var string
-     */
-    protected $table = 'auto_gearbox_types';
-
     /**
      * The attributes that are mass assignable
      *

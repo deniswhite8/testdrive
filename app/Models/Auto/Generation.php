@@ -12,13 +12,6 @@ use App\Models\Auto;
 class Generation extends AbstractModel
 {
     /**
-     * The table associated with the model
-     *
-     * @var string
-     */
-    protected $table = 'auto_generations';
-
-    /**
      * Indicates if the model should be timestamped
      *
      * @var bool

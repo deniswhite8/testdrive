@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Models;
-use App\Models\Auto\BodyType;
-use App\Models\Auto\GearboxType;
+use App\Models\Auto\Body;
+use App\Models\Auto\Gearbox;
 use App\Models\Auto\Generation;
 use App\Models\Auto\Mark;
 use App\Models\Auto\Model;
@@ -59,7 +59,7 @@ class Auto extends AbstractModel
      */
     public function body()
     {
-        return $this->belongsTo(BodyType::class);
+        return $this->belongsTo(Body::class);
     }
 
     /**
@@ -67,6 +67,6 @@ class Auto extends AbstractModel
      */
     public function gearbox()
     {
-        return $this->belongsTo(GearboxType::class);
+        return $this->belongsTo(Gearbox::class);
     }
 }

@@ -12,13 +12,6 @@ use App\Models\Auto;
 class Model extends AbstractModel
 {
     /**
-     * The table associated with the model
-     *
-     * @var string
-     */
-    protected $table = 'auto_models';
-
-    /**
      * Indicates if the model should be timestamped
      *
      * @var bool

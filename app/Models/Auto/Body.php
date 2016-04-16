@@ -9,15 +9,8 @@ use App\Models\Auto;
  *
  * @package App\Model\Auto
  */
-class BodyType extends AbstractModel
+class Body extends AbstractModel
 {
-    /**
-     * The table associated with the model
-     *
-     * @var string
-     */
-    protected $table = 'auto_body_types';
-
     /**
      * The attributes that are mass assignable
      *

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAutoBodyTypesTable extends Migration
+class CreateAutoBodiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateAutoBodyTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('auto_body_types', function (Blueprint $table) {
+        Schema::create('auto_bodies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
         });
@@ -25,6 +25,6 @@ class CreateAutoBodyTypesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('auto_body_types');
+        Schema::drop('auto_bodies');
     }
 }
