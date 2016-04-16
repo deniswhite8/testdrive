@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models\Auto;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\AbstractModel;
 use App\Models\Auto;
 
 /**
@@ -9,7 +9,7 @@ use App\Models\Auto;
  *
  * @package App\Model\Auto
  */
-class GearboxType extends Model
+class GearboxType extends AbstractModel
 {
     /**
      * The table associated with the model
@@ -17,6 +17,13 @@ class GearboxType extends Model
      * @var string
      */
     protected $table = 'auto_gearbox_types';
+
+    /**
+     * The attributes that are mass assignable
+     *
+     * @var array
+     */
+    protected $fillable = ['name'];
 
     /**
      * Indicates if the model should be timestamped

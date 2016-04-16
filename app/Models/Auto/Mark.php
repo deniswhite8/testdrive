@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models\Auto;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\AbstractModel;
 use App\Models\Auto;
 
 /**
@@ -9,7 +9,7 @@ use App\Models\Auto;
  *
  * @package App\Models\Auto
  */
-class Mark extends Model
+class Mark extends AbstractModel
 {
     /**
      * The table associated with the model
@@ -37,7 +37,7 @@ class Mark extends Model
      */
     public function models()
     {
-        return $this->hasMany(\App\Models\Auto\Model::class);
+        return $this->hasMany(Model::class);
     }
 
     /**

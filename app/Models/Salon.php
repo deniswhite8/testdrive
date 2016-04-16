@@ -1,15 +1,22 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * Salon
  *
  * @package App
  */
-class Salon extends Model
+class Salon extends AbstractModel
 {
+    /**
+     * The attributes that are mass assignable
+     *
+     * @var array
+     */
+    protected $fillable = ['dealer_id', 'city_id', 'name', 'description', 'address',
+        'phone', 'email', 'work_time', 'latitude', 'longitude', 'image'];
+
     /**
      * Salon autos
      */

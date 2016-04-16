@@ -5,15 +5,22 @@ namespace App\Models;
 use App\Models\Auto\Generation;
 use App\Models\Auto\Mark;
 use App\Models\Auto\Model;
-use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 /**
  * Dealer
  *
  * @package App\Models
  */
-class Order extends EloquentModel
+class Order extends AbstractModel
 {
+    /**
+     * The attributes that are mass assignable
+     *
+     * @var array
+     */
+    protected $fillable = ['mark_id', 'model_id', 'generation_id', 'salon_id',
+        'contacts', 'datetime', 'comment'];
+
     /**
      * Get mark
      */

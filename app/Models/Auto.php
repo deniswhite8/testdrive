@@ -6,15 +6,22 @@ use App\Models\Auto\GearboxType;
 use App\Models\Auto\Generation;
 use App\Models\Auto\Mark;
 use App\Models\Auto\Model;
-use Illuminate\Database\Eloquent\Model as EloquentModel;
 
 /**
  * Auto model
  *
  * @package App\Models
  */
-class Auto extends EloquentModel
+class Auto extends AbstractModel
 {
+    /**
+     * The attributes that are mass assignable
+     *
+     * @var array
+     */
+    protected $fillable = ['mark_id', 'model_id', 'generation_id',
+        'body_type_id', 'gearbox_type_id', 'mileage', 'description', 'image'];
+
     /**
      * Auto salons
      */
@@ -50,7 +57,7 @@ class Auto extends EloquentModel
     /**
      * Get body type
      */
-    public function bodyType()
+    public function body()
     {
         return $this->belongsTo(BodyType::class);
     }
@@ -58,7 +65,7 @@ class Auto extends EloquentModel
     /**
      * Get gearbox type
      */
-    public function gearboxType()
+    public function gearbox()
     {
         return $this->belongsTo(GearboxType::class);
     }

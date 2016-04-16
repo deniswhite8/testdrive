@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models\Auto;
-use Illuminate\Database\Eloquent\Model as EloquentModel;
+use App\Models\AbstractModel;
 use App\Models\Auto;
 
 /**
@@ -9,7 +9,7 @@ use App\Models\Auto;
  *
  * @package App\Models\Auto
  */
-class Model extends EloquentModel
+class Model extends AbstractModel
 {
     /**
      * The table associated with the model
@@ -24,6 +24,13 @@ class Model extends EloquentModel
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * The attributes that are mass assignable
+     *
+     * @var array
+     */
+    protected $fillable = ['name', 'mark_id'];
 
     /**
      * Get mark

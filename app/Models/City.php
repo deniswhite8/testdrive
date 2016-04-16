@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Model;
 
 /**
  * City
  *
  * @package App\Model
  */
-class City extends Model
+class City extends AbstractModel
 {
     /**
      * Indicates if the model should be timestamped
@@ -16,6 +15,13 @@ class City extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * The attributes that are mass assignable
+     *
+     * @var array
+     */
+    protected $fillable = ['name'];
 
     /**
      * Get dealer salons
