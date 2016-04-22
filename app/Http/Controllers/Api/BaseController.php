@@ -56,7 +56,7 @@ class BaseController extends Controller
     {
         $class = $this->_getModelConfig('class');
         $model = $class::find($id);
-        $model->fill(request()->input())->save();
+        $model->fill($this->_getModelData())->save();
         return $model;
     }
 
@@ -68,7 +68,7 @@ class BaseController extends Controller
     public function store()
     {
         $class = $this->_getModelConfig('class');
-        return $class::create(request()->input());
+        return $class::create($this->_getModelData());
     }
 
     /**
@@ -93,5 +93,30 @@ class BaseController extends Controller
     {
         $name = request()->segment(2);
         return Arr::get(config("api.$name"), $key);
+    }
+
+    /**
+     * Get model data
+     *
+     * @return array
+     */
+    protected function _getModelData()
+    {
+        $class = $this->_getModelConfig('class');
+        $uploadFolder = with(new $class)->getUploadFolder();
+        $uploadDir = public_path("media/$uploadFolder");
+
+        $data = request()->input();
+        foreach (request()->file() as $key => $file) {
+            if (isset($data[$key])) {
+                continue;
+            }
+
+            $fileName = uniqid() . ".{$file->extension()}";
+            $file->move($uploadDir, $fileName);
+            $data[$key] = "$uploadFolder/$fileName";
+        }
+
+        return $data;
     }
 }

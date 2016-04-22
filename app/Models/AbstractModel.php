@@ -15,6 +15,23 @@ abstract class AbstractModel extends Model
     use WithJoinTrait;
 
     /**
+     * Upload direction
+     *
+     * @var string
+     */
+    protected $_uploadDir;
+
+    /**
+     * Get upload folder
+     *
+     * @return string
+     */
+    public function getUploadFolder()
+    {
+        return $this->_uploadDir ?: Str::snake(class_basename($this));
+    }
+
+    /**
      * Get the table associated with the model.
      *
      * @return string

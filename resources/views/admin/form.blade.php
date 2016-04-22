@@ -11,6 +11,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <form id="editForm" role="form"
+                          enctype="multipart/form-data"
                           data-url="{{ url("admin/$model") }}"
                           data-model-id="{{ $id }}"
                           data-api-url="{{ url("api/$model") }}">

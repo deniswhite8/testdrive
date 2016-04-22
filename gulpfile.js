@@ -1,4 +1,5 @@
 var elixir = require('laravel-elixir');
+require('laravel-elixir-remove');
 
 elixir(function(mix) {
     // admin side
@@ -17,12 +18,15 @@ elixir(function(mix) {
             '../../../bower_components/datatables-buttons/js/dataTables.buttons.js',
             '../../../bower_components/datatables-buttons/js/buttons.bootstrap.js',
             '../../../bower_components/jquery-validation/src/core.js',
+            '../../../bower_components/datetimepicker/build/jquery.datetimepicker.full.min.js',
             '../../../public/js/admin.js'
         ], 'public/js/admin.js')
+        .remove('public/build')
         .copy('bower_components/bootstrap/fonts/**', 'public/build/fonts')
         .copy('bower_components/font-awesome/fonts/**', 'public/build/fonts')
         .copy('bower_components/fancybox/source/*.gif', 'public/build/css')
         .copy('bower_components/fancybox/source/*.png', 'public/build/css')
         .version(['css/admin.css', 'js/admin.js'])
+        .remove(['public/css', 'public/js'])
     ;
 });

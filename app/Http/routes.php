@@ -19,6 +19,7 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function() {
     foreach (['order', 'salon', 'auto', 'dealer', 'city',
                  'mark', 'model', 'generation', 'body', 'gearbox'] as $name) {
         Route::get("$name/query", 'BaseController@query');
+        Route::post("$name/{id}", 'BaseController@update');
         Route::resource($name, 'BaseController');
     }
 });

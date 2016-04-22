@@ -27,6 +27,16 @@ return [
                 'model.name' => 'Model',
                 'generation.name' => 'Generation',
                 'created_at' => 'Created At'
+            ],
+            'form' => [
+                ['type' => 'select', 'name' => 'mark_id', 'label' => 'Mark', 'model' => 'mark', 'required' => true],
+                ['type' => 'select', 'name' => 'model_id', 'label' => 'Model', 'model' => 'model', 'required' => true],
+                ['type' => 'select', 'name' => 'generation_id', 'model' => 'generation', 'label' => 'Generation'],
+                ['type' => 'select', 'name' => 'salon_id', 'label' => 'Salon', 'model' => 'salon',
+                    'option' => '{name}, {city.name}', 'required' => true],
+                ['type' => 'textarea', 'name' => 'contacts', 'label' => 'Contacts', 'required' => true],
+                ['type' => 'datetime', 'name' => 'datetime', 'label' => 'Datetime', 'required' => true],
+                ['type' => 'textarea', 'name' => 'comment', 'label' => 'Comment']
             ]
         ],
 
@@ -41,6 +51,17 @@ return [
                 'dealer.name' => 'Dealer',
                 'city.name' => 'City'
             ],
+            'form' => [
+                ['type' => 'text', 'name' => 'name', 'label' => 'Name', 'required' => true],
+                ['type' => 'textarea', 'name' => 'description', 'label' => 'Description'],
+                ['type' => 'text', 'name' => 'address', 'label' => 'Address', 'required' => true],
+                ['type' => 'text', 'name' => 'phone', 'label' => 'Phone'],
+                ['type' => 'text', 'name' => 'email', 'label' => 'Email'],
+                ['type' => 'text', 'name' => 'work_time', 'label' => 'Work Time'],
+                ['type' => 'select', 'name' => 'dealer_id', 'label' => 'Dealer', 'model' => 'dealer'],
+                ['type' => 'map', 'name' => ['latitude', 'longitude'], 'label' => 'Map', 'required' => true],
+                ['type' => 'image', 'name' => 'image', 'label' => 'Image', 'required' => true]
+            ]
         ],
 
         'auto' => [
@@ -63,7 +84,9 @@ return [
                 'name' => 'Name'
             ],
             'form' => [
-                ['type' => 'text', 'name' => 'name', 'label' => 'Name', 'required' => true]
+                ['type' => 'text', 'name' => 'name', 'label' => 'Name', 'required' => true],
+                ['type' => 'textarea', 'name' => 'description', 'label' => 'Description'],
+                ['type' => 'image', 'name' => 'image', 'label' => 'Image']
             ]
         ],
 

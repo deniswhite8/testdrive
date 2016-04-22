@@ -29,5 +29,5 @@ var $body = $('body'),
     };
 
 module.exports = function (settings) {
-    $.ajax($.extend(defaults, settings));
+    $.ajax($.extend({}, defaults, settings));
 };
