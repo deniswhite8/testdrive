@@ -17,8 +17,9 @@ elixir(function(mix) {
             '../../../bower_components/fancybox/source/jquery.fancybox.pack.js',
             '../../../bower_components/datatables-buttons/js/dataTables.buttons.js',
             '../../../bower_components/datatables-buttons/js/buttons.bootstrap.js',
-            '../../../bower_components/jquery-validation/src/core.js',
+            '../../../bower_components/jquery-validation/dist/jquery.validate.min.js',
             '../../../bower_components/datetimepicker/build/jquery.datetimepicker.full.min.js',
+            '../../../bower_components/select2/dist/js/select2.full.min.js',
             '../../../public/js/admin.js'
         ], 'public/js/admin.js')
         .remove('public/build')

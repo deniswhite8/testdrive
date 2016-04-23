@@ -19,9 +19,10 @@ function initForm() {
         modelId = $form.data('modelId'),
         url = $form.data('url'),
         $fileResets = $form.find('.js-file-reset'),
+        $selects = $('.js-select'),
         inputs = {};
 
-    $form.find('input, textarea').not('.js-file-reset').each(function() {
+    $form.find('input, textarea, select').not('.js-file-reset').each(function() {
         var $input = $(this);
         inputs[$input.attr('name')] = $input;
     });
@@ -40,7 +41,10 @@ function initForm() {
     }
 
     $form.on('reset', function(event) {
-        if (!modelId) return;
+        if (!modelId) {
+            $selects.val(null).trigger('change');
+            return;
+        }
 
         event.preventDefault();
         ajax({
@@ -73,7 +77,11 @@ function initForm() {
         });
     });
 
-    $form.validate();
+    $form.validate({
+        errorPlacement: function(error, $element) {
+            $element.closest('.form-group').append(error);
+        }
+    });
     $form.trigger('reset');
 }
 

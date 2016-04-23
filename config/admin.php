@@ -29,11 +29,14 @@ return [
                 'created_at' => 'Created At'
             ],
             'form' => [
-                ['type' => 'select', 'name' => 'mark_id', 'label' => 'Mark', 'model' => 'mark', 'required' => true],
-                ['type' => 'select', 'name' => 'model_id', 'label' => 'Model', 'model' => 'model', 'required' => true],
-                ['type' => 'select', 'name' => 'generation_id', 'model' => 'generation', 'label' => 'Generation'],
-                ['type' => 'select', 'name' => 'salon_id', 'label' => 'Salon', 'model' => 'salon',
-                    'option' => '{name}, {city.name}', 'required' => true],
+                ['type' => 'select', 'name' => 'mark_id', 'label' => 'Mark', 'model' => 'mark', 'option' => 'name',
+                    'required' => true],
+                ['type' => 'select', 'name' => 'model_id', 'label' => 'Model', 'model' => 'model', 'option' => 'name',
+                    'required' => true],
+                ['type' => 'select', 'name' => 'generation_id', 'model' => 'generation', 'option' => 'name',
+                    'label' => 'Generation'],
+                ['type' => 'select', 'name' => 'salon_id', 'label' => 'Salon', 'model' => 'salon', 'option' => 'name',
+                    'required' => true],
                 ['type' => 'textarea', 'name' => 'contacts', 'label' => 'Contacts', 'required' => true],
                 ['type' => 'datetime', 'name' => 'datetime', 'label' => 'Datetime', 'required' => true],
                 ['type' => 'textarea', 'name' => 'comment', 'label' => 'Comment']
@@ -56,11 +59,14 @@ return [
                 ['type' => 'textarea', 'name' => 'description', 'label' => 'Description'],
                 ['type' => 'text', 'name' => 'address', 'label' => 'Address', 'required' => true],
                 ['type' => 'text', 'name' => 'phone', 'label' => 'Phone'],
-                ['type' => 'text', 'name' => 'email', 'label' => 'Email'],
+                ['type' => 'text', 'name' => 'email', 'label' => 'Email', 'validation' => 'email'],
                 ['type' => 'text', 'name' => 'work_time', 'label' => 'Work Time'],
-                ['type' => 'select', 'name' => 'dealer_id', 'label' => 'Dealer', 'model' => 'dealer'],
+                ['type' => 'select', 'name' => 'dealer_id', 'label' => 'Dealer', 'model' => \App\Models\Dealer::class,
+                    'option' => 'name', 'required' => true],
+                ['type' => 'select', 'name' => 'city_id', 'label' => 'City', 'model' => \App\Models\City::class,
+                    'option' => 'name', 'required' => true],
                 ['type' => 'map', 'name' => ['latitude', 'longitude'], 'label' => 'Map', 'required' => true],
-                ['type' => 'image', 'name' => 'image', 'label' => 'Image', 'required' => true]
+                ['type' => 'image', 'name' => 'image', 'label' => 'Image']
             ]
         ],
 

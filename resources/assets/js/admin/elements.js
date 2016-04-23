@@ -29,7 +29,82 @@ function initImageInput() {
     });
 }
 
+function initSelect() {
+    var $selects = $('.js-select');
+
+    $selects.select2({
+        theme: 'bootstrap'
+    });
+
+    $selects.on('set-value', function() {
+        $(this).trigger('change');
+    });
+
+    $selects.on('change', function() {
+        $(this).valid();
+    });
+}
+
+function initMap() {
+    ymaps.ready(function() {
+        $('.js-map').each(function() {
+            var $this = $(this),
+                $latInput = $this.prevAll('.js-latitude'),
+                $longInput = $this.prevAll('.js-longitude');
+
+            var map = new ymaps.Map(this, {
+                center: [$latInput.val() || 55.76, $longInput.val() || 37.64],
+                zoom: 10
+            });
+
+            function updateCoords(coords) {
+                coords = coords || [null, null];
+
+                $latInput.val(coords[0]).valid();
+                $longInput.val(coords[1]);
+            }
+
+            function addPlacemark(coords) {
+                map.geoObjects.removeAll();
+
+                var point = new ymaps.Placemark(coords, null, {
+                    draggable: true,
+                    preset: 'islands#dotIcon'
+                });
+
+                point.events.add('dragend', function(event) {
+                    updateCoords(event.get('coords'));
+                });
+
+                point.events.add('contextmenu', function() {
+                    updateCoords();
+                    map.geoObjects.removeAll();
+                });
+
+                updateCoords(coords);
+                map.geoObjects.add(point);
+            }
+
+            function addInitPoint() {
+                if ($latInput.val()) {
+                    addPlacemark([$latInput.val(), $longInput.val()]);
+                    map.setCenter([$latInput.val(), $longInput.val()], 10);
+                }
+            }
+
+            addInitPoint();
+            $longInput.on('set-value', addInitPoint);
+
+            map.events.add('click', function (event) {
+                addPlacemark(event.get('coords'));
+            });
+        });
+    });
+}
+
 $(function() {
     initDatetime();
     initImageInput();
+    initSelect();
+    initMap();
 });
