@@ -18,13 +18,16 @@ Route::get('/', function () {
 Route::group(['prefix' => 'api', 'namespace' => 'Api'], function() {
     foreach (['order', 'salon', 'auto', 'dealer', 'city',
                  'mark', 'model', 'generation', 'body', 'gearbox'] as $name) {
-        Route::get("$name/query", 'BaseController@query');
-        Route::post("$name/{id}", 'BaseController@update');
-        Route::resource($name, 'BaseController');
+        Route::group(['middleware' => ['role:admin']], function() use ($name) {
+            Route::get("$name/query", 'BaseController@query');
+            Route::post("$name/{id}", 'BaseController@update');
+            Route::resource($name, 'BaseController', ['only' => ['store', 'update', 'destroy']]);
+        });
+        Route::resource($name, 'BaseController', ['only' => ['index', 'show']]);
     }
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['role:admin']], function() {
     Route::get('/', 'ViewController@dashboard');
     Route::get('{name}', 'ViewController@grid');
     Route::get('{name}/new', 'ViewController@edit');
@@ -32,3 +35,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
 });
 
 
+Route::auth();
+Route::get('/home', 'HomeController@index');
