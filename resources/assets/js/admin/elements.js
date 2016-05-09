@@ -57,7 +57,7 @@ function initSelect() {
             var $this = $(this),
                 options = [{id: '0', text: '\xa0'}];
 
-            if (!$parent.val()) {
+            if (!$parent.val() || $parent.val() == '0') {
                 $this.empty().select2({
                     theme: 'bootstrap',
                     data: options
