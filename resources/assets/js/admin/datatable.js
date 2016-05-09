@@ -1,4 +1,5 @@
 var ajax = require('./ajax.js'),
+    selected = [],
     searchIndexes = [];
 
 function initDeleteBtns($table, config) {
@@ -38,16 +39,58 @@ function prepareResponse(response) {
     response.error = response.message;
 }
 
+function initSelection($table, config) {
+    var $input = $('#' + config.input);
+
+    $input.on('set-value', function(event, data) {
+        var value = data.value;
+        $input.val(value.join(','));
+        selected = value;
+        $table.DataTable().ajax.reload(null, false);
+    });
+
+    $table.on('click', 'tr', function() {
+        var id = $table.DataTable().row(this).data().id,
+            index = $.inArray(id, selected);
+
+        if (index === -1) {
+            selected.push(id);
+        } else {
+            selected.splice(index, 1);
+        }
+
+        $input.val(selected.filter(function(val) {return !!val}).join(','));
+        $(this).toggleClass('selected');
+    });
+}
+
 function initDatatable($table) {
     var config = $table.data(),
-        columns = [];
+        columns = [],
+        buttons = [{
+            text: 'Refresh <span class="glyphicon glyphicon-refresh"></span>',
+            action: function () {
+                $table.DataTable().ajax.reload(null, false);
+            }
+        }];
 
     for (var fieldKey in config.fields) {
         if (!config.fields.hasOwnProperty(fieldKey)) continue;
         columns.push({data: fieldKey});
         searchIndexes.push(fieldKey.split('.').slice(-2).join('.'));
     }
-    columns.push({data: null, width: '13%', orderable: false});
+
+    if (config.onlyView) {
+        initSelection($table, config);
+    } else {
+        columns.push({data: null, width: '13%', orderable: false});
+        buttons.unshift({
+            text: 'Add New <span class="glyphicon glyphicon-plus"></span>',
+            init: function (dt, node) {
+                $(node).attr('href', config.url + '/new').off('click');
+            }
+        });
+    }
 
     $table
         .on('draw.dt', function () {
@@ -70,8 +113,13 @@ function initDatatable($table) {
                     prepareRequest(request);
                 }
             },
+            rowCallback: !config.onlyView ? null : function(row, data) {
+                if ($.inArray(data.id, selected) !== -1) {
+                    $(row).addClass('selected');
+                }
+            },
             columns: columns,
-            columnDefs: [{
+            columnDefs: config.onlyView ? null : [{
                 targets: -1,
                 defaultContent:
                     '<div class="btn-group" role="group" aria-label="Actions">\
@@ -82,20 +130,7 @@ function initDatatable($table) {
                     </div>'
             }],
             dom: "<'row'<'col-sm-4'l><'col-sm-4'B><'col-sm-4'f>>rt<'row'<'col-sm-6'i><'col-sm-6'p>>",
-            buttons: [
-                {
-                    text: 'Add New <span class="glyphicon glyphicon-plus"></span>',
-                    init: function (dt, node) {
-                        $(node).attr('href', config.url + '/new').off('click');
-                    }
-                },
-                {
-                    text: 'Refresh <span class="glyphicon glyphicon-refresh"></span>',
-                    action: function () {
-                        $table.DataTable().ajax.reload(null, false);
-                    }
-                }
-            ]
+            buttons: buttons
         });
 }
 

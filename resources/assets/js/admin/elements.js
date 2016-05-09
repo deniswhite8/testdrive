@@ -1,13 +1,15 @@
+var ajax = require('./ajax.js');
+
 function initDatetime() {
     $('.js-datetime').datetimepicker({
-        format: 'd.m.Y H:i',
         step: 30
     });
 }
 
 function initImageInput() {
-    $('.js-image-input').on('set-value', function(event, value) {
+    $('.js-image-input').on('set-value', function(event, data) {
         var $this = $(this),
+            value = data.value,
             $container = $this.prev(),
             $glyphicon = $container.find('.glyphicon'),
             $img = $container.find('img');
@@ -36,12 +38,65 @@ function initSelect() {
         theme: 'bootstrap'
     });
 
-    $selects.on('set-value', function() {
-        $(this).trigger('change');
+    $selects.on('set-value', function(event, data) {
+        $(this).trigger('change').data('tmpValue', data.value);
     });
 
     $selects.on('change', function() {
+        var $parent = $(this),
+            $dependent = $parent.data('dependent');
+
+        if (!$dependent) {
+            $dependent = $('.js-select[data-parent=' + $parent[0].id + ']');
+            $parent.data('dependent', $dependent);
+        }
+
         $(this).valid();
+
+        $dependent.each(function() {
+            var $this = $(this),
+                options = [{id: '0', text: '\xa0'}];
+
+            if (!$parent.val()) {
+                $this.empty().select2({
+                    theme: 'bootstrap',
+                    data: options
+                });
+                $this.val('0').trigger('change');
+                return;
+            }
+
+            var optionName = $this.data('option'),
+                data = {count: 1000};
+
+            data[$parent.attr('name')] = $parent.val();
+
+            ajax({
+                url: $this.data('url'),
+                data: data,
+
+                success: function(data) {
+                    $this.empty();
+
+                    data.data.forEach(function(item) {
+                        options.push({
+                            id: item.id,
+                            text: item[optionName]
+                        });
+                    });
+
+                    $this.select2({
+                        theme: 'bootstrap',
+                        data: options
+                    });
+
+                    var tmpValue;
+                    if (tmpValue = $this.data('tmpValue')) {
+                        $this.val(tmpValue).trigger('change').data('tmpValue', null);
+                    }
+                }
+            });
+        });
     });
 }
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models\Admin;
+use Illuminate\Support\Facades\Schema;
 
 /**
  * Class ModelRepository
@@ -24,7 +25,8 @@ class ModelRepository
         $builder = $this->_joinFields($model, $config);
 
         $this->_addOrder($builder, $filters);
-        $appliedSearch = $this->_addSearch($builder, $filters, $config);
+        $appliedSearch = $this->_addSearch($builder, $filters, $config) ||
+            $this->_addFilters($builder, $filters);
 
         $requestId = data_get($filters, 'request_id');
         return $this->_paginate($builder, $filters, $total, $requestId, $appliedSearch);
@@ -89,6 +91,31 @@ class ModelRepository
         }
 
         return true;
+    }
+
+    /**
+     * Add filters
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param array $filters
+     *
+     * @return bool
+     */
+    protected function _addFilters($builder, $filters)
+    {
+        $tableFields = Schema::getColumnListing($builder->getModel()->getTable());
+        $isApplied = false;
+
+        foreach ($filters as $key => $value) {
+            if (!in_array($key, $tableFields) || empty($value)) {
+                continue;
+            }
+
+            $builder->where($key, $value);
+            $isApplied = true;
+        }
+
+        return $isApplied;
     }
 
     /**

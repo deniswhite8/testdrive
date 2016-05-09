@@ -52,4 +52,14 @@ class Order extends AbstractModel
     {
         return $this->belongsTo(Salon::class);
     }
+
+    /**
+     * Set generation id attribute
+     *
+     * @param $value
+     */
+    public function setGenerationIdAttribute($value)
+    {
+        $this->attributes['generation_id'] = $value ?: null;
+    }
 }

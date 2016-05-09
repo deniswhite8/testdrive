@@ -29,14 +29,14 @@ return [
                 'created_at' => 'Created At'
             ],
             'form' => [
-                ['type' => 'select', 'name' => 'mark_id', 'label' => 'Mark', 'model' => 'mark', 'option' => 'name',
-                    'required' => true],
-                ['type' => 'select', 'name' => 'model_id', 'label' => 'Model', 'model' => 'model', 'option' => 'name',
-                    'required' => true],
-                ['type' => 'select', 'name' => 'generation_id', 'model' => 'generation', 'option' => 'name',
-                    'label' => 'Generation'],
-                ['type' => 'select', 'name' => 'salon_id', 'label' => 'Salon', 'model' => 'salon', 'option' => 'name',
-                    'required' => true],
+                ['type' => 'select', 'name' => 'mark_id', 'label' => 'Mark', 'model' => \App\Models\Auto\Mark::class,
+                    'option' => 'name', 'required' => true],
+                ['type' => 'select', 'name' => 'model_id', 'label' => 'Model', 'model' => 'model',
+                    'option' => 'name', 'required' => true, 'parent' => 'mark_id'],
+                ['type' => 'select', 'name' => 'generation_id', 'model' => 'generation',
+                    'option' => 'name', 'label' => 'Generation', 'parent' => 'model_id'],
+                ['type' => 'select', 'name' => 'salon_id', 'label' => 'Salon', 'model' => \App\Models\Salon::class,
+                    'option' => 'name', 'required' => true],
                 ['type' => 'textarea', 'name' => 'contacts', 'label' => 'Contacts', 'required' => true],
                 ['type' => 'datetime', 'name' => 'datetime', 'label' => 'Datetime', 'required' => true],
                 ['type' => 'textarea', 'name' => 'comment', 'label' => 'Comment']
@@ -66,7 +66,8 @@ return [
                 ['type' => 'select', 'name' => 'city_id', 'label' => 'City', 'model' => \App\Models\City::class,
                     'option' => 'name', 'required' => true],
                 ['type' => 'map', 'name' => ['latitude', 'longitude'], 'label' => 'Map', 'required' => true],
-                ['type' => 'image', 'name' => 'image', 'label' => 'Image']
+                ['type' => 'image', 'name' => 'image', 'label' => 'Image'],
+                ['type' => 'grid', 'name' => 'auto_ids', 'model' => 'auto', 'label' => 'Autos']
             ]
         ],
 
@@ -80,6 +81,21 @@ return [
                 'body.name' => 'Body',
                 'gearbox.name' => 'Gearbox',
                 'mileage' => 'Mileage'
+            ],
+            'form' => [
+                ['type' => 'select', 'name' => 'mark_id', 'label' => 'Mark', 'model' => \App\Models\Auto\Mark::class,
+                    'option' => 'name', 'required' => true],
+                ['type' => 'select', 'name' => 'model_id', 'label' => 'Model', 'model' => 'model',
+                    'option' => 'name', 'required' => true, 'parent' => 'mark_id'],
+                ['type' => 'select', 'name' => 'generation_id', 'model' => 'generation',
+                    'option' => 'name', 'label' => 'Generation', 'parent' => 'model_id'],
+                ['type' => 'select', 'name' => 'body_id', 'label' => 'Body', 'model' => \App\Models\Auto\Body::class,
+                    'option' => 'name', 'required' => true],
+                ['type' => 'select', 'name' => 'gearbox_id', 'label' => 'Gearbox', 'model' => \App\Models\Auto\Gearbox::class,
+                    'option' => 'name', 'required' => true],
+                ['type' => 'number', 'name' => 'mileage', 'label' => 'Mileage'],
+                ['type' => 'textarea', 'name' => 'description', 'label' => 'Description'],
+                ['type' => 'image', 'name' => 'image', 'label' => 'Image']
             ]
         ],
 

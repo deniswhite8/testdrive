@@ -20,7 +20,7 @@ class Auto extends AbstractModel
      * @var array
      */
     protected $fillable = ['mark_id', 'model_id', 'generation_id',
-        'body_type_id', 'gearbox_type_id', 'mileage', 'description', 'image'];
+        'body_id', 'gearbox_id', 'mileage', 'description', 'image'];
 
     /**
      * Auto salons
@@ -68,5 +68,15 @@ class Auto extends AbstractModel
     public function gearbox()
     {
         return $this->belongsTo(Gearbox::class);
+    }
+
+    /**
+     * Set generation id attribute
+     *
+     * @param $value
+     */
+    public function setGenerationIdAttribute($value)
+    {
+        $this->attributes['generation_id'] = $value ?: null;
     }
 }

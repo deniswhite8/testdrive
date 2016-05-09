@@ -34,7 +34,7 @@ function initForm() {
             var input = inputs[field];
             if (!data.hasOwnProperty(field) || !input) continue;
             if (input.attr('type') != 'file') input.val(data[field]);
-            input.triggerHandler('set-value', data[field]);
+            input.triggerHandler('set-value', {value: data[field]});
         }
 
         $form.valid();

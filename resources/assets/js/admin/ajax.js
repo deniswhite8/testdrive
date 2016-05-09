@@ -1,12 +1,15 @@
 var $body = $('body'),
     csrfToken = $('meta[name="csrf-token"]').attr('content'),
     timeoutHandle = null,
+    activeRequests = 0,
     defaults = {
         headers: {
             'X-CSRF-TOKEN': csrfToken
         },
 
         beforeSend: function() {
+            activeRequests++;
+
             clearTimeout(timeoutHandle);
             timeoutHandle = setTimeout(function() {
                 $.fancybox.helpers.overlay.open({parent: $body, closeClick: false});
@@ -19,6 +22,9 @@ var $body = $('body'),
         },
 
         complete: function() {
+            activeRequests--;
+            if (activeRequests) return;
+
             clearTimeout(timeoutHandle);
             $.fancybox.hideLoading();
 
