@@ -2,7 +2,6 @@ var elixir = require('laravel-elixir');
 require('laravel-elixir-remove');
 
 elixir(function(mix) {
-    // admin side
     mix
         .less('admin.less')
         .browserify('admin.js')
@@ -22,12 +21,23 @@ elixir(function(mix) {
             '../../../bower_components/select2/dist/js/select2.full.min.js',
             '../../../public/js/admin.js'
         ], 'public/js/admin.js')
+
+        .less('app.less')
+        .browserify('app.js')
+        .scripts([
+            '../../../bower_components/jquery/dist/jquery.min.js',
+            '../../../bower_components/bootstrap/dist/js/bootstrap.min.js',
+            '../../../public/js/app.js'
+        ], 'public/js/app.js')
+
         .remove('public/build')
         .copy('bower_components/bootstrap/fonts/**', 'public/build/fonts')
         .copy('bower_components/font-awesome/fonts/**', 'public/build/fonts')
+        .copy('bower_components/lato/font/**', 'public/build/font')
         .copy('bower_components/fancybox/source/*.gif', 'public/build/css')
         .copy('bower_components/fancybox/source/*.png', 'public/build/css')
-        .version(['css/admin.css', 'js/admin.js'])
+
+        .version(['css/admin.css', 'js/admin.js', 'css/app.css', 'js/app.js'])
         .remove(['public/css', 'public/js'])
     ;
 });

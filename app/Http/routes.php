@@ -11,8 +11,9 @@
 |
 */
 
+Route::auth();
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::group(['prefix' => 'api', 'namespace' => 'Api'], function() {
@@ -27,13 +28,9 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function() {
     }
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['role:admin']], function() {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['role:admin,login']], function() {
     Route::get('/', 'ViewController@dashboard');
     Route::get('{name}', 'ViewController@grid');
     Route::get('{name}/new', 'ViewController@edit');
     Route::get('{name}/{id}', 'ViewController@edit');
 });
-
-
-Route::auth();
-Route::get('/home', 'HomeController@index');
