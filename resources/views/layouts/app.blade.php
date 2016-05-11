@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>TestDrive</title>
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
+    @yield('head')
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
@@ -35,6 +37,9 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                @role('admin')
+                                    <li><a href="{{ url('/admin') }}"><i class="fa fa-btn fa-edit"></i>Admin Panel</a></li>
+                                @endrole
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                             </ul>
                         </li>

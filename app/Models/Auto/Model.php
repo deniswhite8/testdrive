@@ -12,6 +12,13 @@ use App\Models\Auto;
 class Model extends AbstractModel
 {
     /**
+     * The number of models to return for pagination.
+     *
+     * @var int
+     */
+    protected $perPage = 300;
+
+    /**
      * Indicates if the model should be timestamped
      *
      * @var bool

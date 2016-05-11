@@ -1,6 +1,10 @@
 @import (inline) 'bower_components/font-awesome/css/font-awesome.min.css';
-@import (inline) 'bower_components/bootstrap/dist/css/bootstrap.min.css';
+@import 'bower_components/bootstrap/less/bootstrap.less';
 @import (inline) 'bower_components/lato/css/lato.min.css';
+@import (inline) 'bower_components/datetimepicker/jquery.datetimepicker.css';
+@import (inline) 'bower_components/bootstrap-combobox/css/bootstrap-combobox.css';
+
+@img-path: ~"../img";
 
 body {
     font-family: 'Lato', sans-serif;
@@ -8,4 +12,72 @@ body {
 
 .fa-btn {
     margin-right: 6px;
+}
+
+.ajax-loader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: rgba(127, 127, 127, 0.25) url("@{img-path}/ajax-loader.gif") no-repeat center;
+}
+
+.glyphicon-refresh-animate {
+    .animation(spin 1.0s infinite linear)
+}
+
+@keyframes spin {
+    from { .rotate(0deg); }
+    to { .rotate(360deg); }
+}
+
+.ajax-form {
+    .btn[type=submit] {
+        width: 70px;
+
+        .glyphicon {
+            display: none;
+        }
+
+        &._loading {
+            .glyphicon {
+                display: initial;
+            }
+
+            ._text {
+                display: none;
+            }
+        }
+    }
+}
+
+.salon-map {
+    width: 100%;
+    height: 500px;
+}
+
+.salon-balloon {
+    border: none;
+    margin-bottom: 0;
+
+    ._image {
+        width: 150px;
+    }
+}
+
+.message-modal {
+    .modal-header {
+        border: none;
+    }
+}
+
+.search-panel {
+    text-align: center;
+    padding: 0;
+}
+
+.search-form {
+    margin: 1.5rem 0;
 }

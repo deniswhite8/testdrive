@@ -27,6 +27,11 @@ elixir(function(mix) {
         .scripts([
             '../../../bower_components/jquery/dist/jquery.min.js',
             '../../../bower_components/bootstrap/dist/js/bootstrap.min.js',
+            '../../../bower_components/underscore/underscore-min.js',
+            '../../../bower_components/backbone/backbone-min.js',
+            '../../../bower_components/bootstrap-validator/js/validator.js',
+            '../../../bower_components/bootstrap-combobox/js/bootstrap-combobox.js',
+            '../../../bower_components/datetimepicker/build/jquery.datetimepicker.full.min.js',
             '../../../public/js/app.js'
         ], 'public/js/app.js')
 
@@ -36,6 +41,7 @@ elixir(function(mix) {
         .copy('bower_components/lato/font/**', 'public/build/font')
         .copy('bower_components/fancybox/source/*.gif', 'public/build/css')
         .copy('bower_components/fancybox/source/*.png', 'public/build/css')
+        .copy('resources/assets/img/**', 'public/build/img')
 
         .version(['css/admin.css', 'js/admin.js', 'css/app.css', 'js/app.js'])
         .remove(['public/css', 'public/js'])

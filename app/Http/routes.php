@@ -17,6 +17,9 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'api', 'namespace' => 'Api'], function() {
+    Route::post('search', 'SearchController@index');
+    Route::post('appointment', 'OrderController@place');
+
     foreach (['order', 'salon', 'auto', 'dealer', 'city',
                  'mark', 'model', 'generation', 'body', 'gearbox'] as $name) {
         Route::group(['middleware' => ['role:admin']], function() use ($name) {
@@ -26,6 +29,9 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function() {
         });
         Route::resource($name, 'BaseController', ['only' => ['index', 'show']]);
     }
+
+    Route::resource('mark.model', 'BaseRelationController', ['only' => ['index']]);
+    Route::resource('model.generation', 'BaseRelationController', ['only' => ['index']]);
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['role:admin,login']], function() {

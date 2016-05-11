@@ -15,6 +15,13 @@ abstract class AbstractModel extends Model
     use WithJoinTrait;
 
     /**
+     * The number of models to return for pagination.
+     *
+     * @var int
+     */
+    protected $perPage = 50;
+
+    /**
      * Upload direction
      *
      * @var string
@@ -43,6 +50,6 @@ abstract class AbstractModel extends Model
         }
 
         $className = str_replace(__NAMESPACE__ . '\\', '', get_class($this));
-        return str_replace('\\', '', Str::snake(Str::plural($className)));
+        return str_replace('\\', '', snake_case(str_plural($className)));
     }
 }
