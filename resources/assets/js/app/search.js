@@ -347,6 +347,7 @@ var AppointmentForm = Backbone.View.extend({
 
             success: function(data) {
                 self._messageBox.success();
+                $form.get(0).clear();
             },
 
             error: function(xhr) {
@@ -362,19 +363,25 @@ var AppointmentForm = Backbone.View.extend({
 
 // init map and search form
 ymaps.ready(function() {
-    var map = new YMap({el: $('#map')});
+    var map = new YMap({el: $('#map')}),
+        $appointmentForm = $('#appointmentForm'),
+        $appointmentModal = $('#appointmentModal');
 
     var searchForm = new SearchForm({
         el: $('#searchForm'),
         map: map
     });
 
-    new AppointmentForm({
-        el: $('#appointmentForm'),
-        searchForm: searchForm,
-        modal: $('#appointmentModal'),
-        messageBox: new MessageBox({el: $('#messageModal')}),
-        map: map
+    $appointmentModal.one('shown.bs.modal', function() {
+        $appointmentForm.validator();
+
+        new AppointmentForm({
+            el: $appointmentForm,
+            searchForm: searchForm,
+            modal: $appointmentModal,
+            messageBox: new MessageBox({el: $('#messageModal')}),
+            map: map
+        });
     });
 
     $('#preloader').fadeOut();

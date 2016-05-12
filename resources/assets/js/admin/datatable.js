@@ -76,7 +76,7 @@ function initDatatable($table) {
 
     for (var fieldKey in config.fields) {
         if (!config.fields.hasOwnProperty(fieldKey)) continue;
-        columns.push({data: fieldKey});
+        columns.push({data: fieldKey, defaultContent: ''});
         searchIndexes.push(fieldKey.split('.').slice(-2).join('.'));
     }
 

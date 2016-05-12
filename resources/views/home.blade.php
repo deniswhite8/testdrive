@@ -4,8 +4,8 @@
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
     <script id="salonBalloonTemplate" type="text/template">
         <div class="salon-balloon thumbnail">
-            <% if (_image = salon.get('image_thumbnail')) { %>
-            <img class="_image" src="<%= _image %>"
+            <% if (_image = salon.get('image')) { %>
+            <img class="_image" src="{{ url('media') }}/<%= _image %>"
                  alt="<%= salon.get('name') %>"/>
             <% } %>
 
@@ -94,7 +94,7 @@
                 <h4 class="modal-title">Оставить заявку</h4>
             </div>
             <div class="modal-body">
-                <form action="{{ url('api/appointment') }}" class="ajax-form" data-toggle="validator"
+                <form action="{{ url('api/appointment') }}" class="ajax-form"
                       role="form" method="post" id="appointmentForm">
                     <div class="form-group">
                         <label for="contacts">Ваши контактные данные (телефон или email)</label>
