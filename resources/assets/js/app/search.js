@@ -371,7 +371,11 @@ ymaps.ready(function() {
     });
 
     $appointmentModal.one('shown.bs.modal', function() {
-        $appointmentForm.validator();
+        $appointmentForm.validate({
+            //errorPlacement: function(error, $element) {
+            //    $element.closest('.form-group').append(error);
+            //}
+        });
 
         new AppointmentForm({
             el: $appointmentForm,

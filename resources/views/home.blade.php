@@ -102,18 +102,18 @@
                     <div class="form-group">
                         <label for="contacts">Ваши контактные данные (телефон или email)</label>
                         <input type="text" class="form-control"
-                               data-error="укажите контактные данные по которым мы сможем с вами связаться"
+                               data-msg-required="укажите контактные данные по которым мы сможем с вами связаться"
                                id="contacts" name="contacts" required>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <label for="datetime">Дата и время</label>
                         <div class="input-group">
-                                <span class="input-group-addon" id="datetimeInputAddon">
-                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                </span>
+                            <span class="input-group-addon" id="datetimeInputAddon">
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                            </span>
                             <input type="text" class="form-control js-datetime" required
-                                   data-error="выберете желамую дату и время для записи"
+                                   data-msg-required="выберете желамую дату и время для записи"
                                    aria-describedby="datetimeInputAddon"
                                    id="datetime" name="datetime">
                         </div>

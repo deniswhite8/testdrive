@@ -29,7 +29,7 @@ elixir(function(mix) {
             '../../../bower_components/bootstrap/dist/js/bootstrap.min.js',
             '../../../bower_components/underscore/underscore-min.js',
             '../../../bower_components/backbone/backbone-min.js',
-            '../../../bower_components/bootstrap-validator/js/validator.js',
+            '../../../bower_components/jquery-validation/dist/jquery.validate.min.js',
             '../../../bower_components/select2/dist/js/select2.full.min.js',
             '../../../bower_components/datetimepicker/build/jquery.datetimepicker.full.min.js',
             '../../../public/js/app.js'
