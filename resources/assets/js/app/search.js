@@ -187,7 +187,6 @@ var SearchForm = Backbone.View.extend({
 
         collection.fetch({
             beforeSend: function() {
-                $selectElement.children().not(':first').remove();
                 self.$_submitBtn.addClass('_loading');
             },
 
@@ -201,7 +200,6 @@ var SearchForm = Backbone.View.extend({
                         value: entity.get('id'), label: entity.getLabel()
                     }));
                 });
-                $selectElement.trigger('refresh');
             }
         });
     }

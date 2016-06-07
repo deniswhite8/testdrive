@@ -48,8 +48,9 @@
                 <div class="panel-body search-panel">
                     <form class="form-inline ajax-form search-form" id="searchForm">
                         <div class="form-group">
-                            <select name="auto[mark]" id="autoMark" class="form-control js-combobox">
-                                <option value="" selected disabled hidden>Марка</option>
+                            <select name="auto[mark]" id="autoMark" data-placeholder="Марка"
+                                    class="form-control js-select select">
+                                <option value="" selected disabled>&nbsp;</option>
                                 @foreach(\App\Models\Auto\Mark::lists('name', 'id') as $id => $name)
                                     <option value="{{ $id }}">{{ $name }}</option>
                                 @endforeach
@@ -57,14 +58,16 @@
                         </div>
 
                         <div class="form-group">
-                            <select name="auto[model]" id="autoModel" class="form-control js-combobox">
-                                <option value="" selected disabled hidden>Модель</option>
+                            <select name="auto[model]" id="autoModel" data-placeholder="Модель"
+                                    class="form-control js-select select">
+                                <option value="" selected disabled>&nbsp;</option>
                             </select>
                         </div>
 
                         <div class="form-group">
-                            <select name="auto[generation]" id="autoGeneration" class="form-control js-combobox">
-                                <option value="" selected>Поколение</option>
+                            <select name="auto[generation]" id="autoGeneration" data-placeholder="Поколение"
+                                    class="form-control js-select select">
+                                <option value="" selected disabled>&nbsp;</option>
                             </select>
                         </div>
 

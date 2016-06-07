@@ -16,21 +16,23 @@ $.fn.serializeObject = function() {
 };
 
 $.fn.clear = function () {
-    return $(this).val(null).trigger('clear').trigger('change');
+    return $(this).val(null).trigger('change').trigger('clear');
 };
 
 $(function() {
-    $('select.js-combobox')
-        .combobox()
-        .on('refresh', function() {
-            $(this).combobox('refresh');
-        })
-        .on('clear', function() {
-            var combobox = $(this).data('combobox');
-            combobox.clearTarget();
-            combobox.$element.val('');
-        })
-    ;
+    $('select.js-select').each(function() {
+        var $select = $(this);
+
+        $select
+            .select2($.extend({
+                theme: 'bootstrap',
+                allowClear: true
+            }, $select.data()))
+            .on('clear', function() {
+                $select.children().not(':first').remove();
+            })
+        ;
+    });
 
     $('input.js-datetime').datetimepicker({
         lang: 'ru',
