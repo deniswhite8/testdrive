@@ -345,7 +345,6 @@ var AppointmentForm = Backbone.View.extend({
 
             success: function(data) {
                 self._messageBox.success();
-                $form.get(0).clear();
             },
 
             error: function(xhr) {
@@ -371,11 +370,7 @@ ymaps.ready(function() {
     });
 
     $appointmentModal.one('shown.bs.modal', function() {
-        $appointmentForm.validate({
-            //errorPlacement: function(error, $element) {
-            //    $element.closest('.form-group').append(error);
-            //}
-        });
+        $appointmentForm.validate();
 
         new AppointmentForm({
             el: $appointmentForm,
